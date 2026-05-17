@@ -1,0 +1,20 @@
+# Python - קבצים זמניים וספריות
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Environment Variables - אבטחת מפתחות (חשוב ביותר!)
+.env
+
+# Editors - הגדרות של עורך הקוד
+.vscode/
+.idea/
+
+# OS specific - קבצי מערכת הפעלה
+.DS_Store
+Thumbs.db
+
+# Logs - יומני שגיאות
+*.log

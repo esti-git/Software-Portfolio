@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>THE ARTI-CHOKE | קולינריה עילית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,900&family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="recipe.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">THE ARTI-CHOKE</div>
+        <div class="menu">
+            <button onclick="showSection('recipes')" id="nav-recipes" class="active">התפריט</button>
+            <button onclick="showSection('add')" id="nav-add">שיתוף</button>
+            <button onclick="showSection('ask')" id="nav-ask">עוזר AI</button>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <span class="eyebrow">THE ART OF COOKING</span>
+        <div class="hero-content">
+            <h1>יצירות <span>קולינריות</span></h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="recipes-section" class="view">
+            <div class="filter-container" style="text-align: center; margin-bottom: 40px;">
+                <select id="category-filter" onchange="loadAllRecipes(this.value)" style="background: var(--card-bg); color: white; border: 1px solid var(--gold); padding: 10px; font-family: 'Assistant'; cursor: pointer;">
+                    <option value="">כל הקטגוריות</option>
+                    <option value="1">מנות ראשונות</option>
+                    <option value="2">מרקים</option>
+                    <option value="3">מנות עיקריות - בשר</option>
+                    <option value="4">מנות עיקריות - עוף</option>
+                    <option value="5">מנות עיקריות - דגים</option>
+                    <option value="6">מנות עיקריות - צמחוני</option>
+                    <option value="7">מנות עיקריות - טבעוני</option>
+                    <option value="8">תוספות חמות</option>
+                    <option value="9">תוספות קרות</option>
+                    <option value="10">קינוחים חלביים</option>
+                    <option value="11">קינוחים פרווה</option>
+                    <option value="12">עוגות שוקולד</option>
+                </select>
+            </div>
+            <div id="recipes-list" class="menu-grid"></div>
+        </section>
+
+        <section id="details-section" class="view hidden">
+            <div class="recipe-detail-wrapper">
+                <button class="btn-edit" style="border:none; padding:0; margin-bottom:40px;" onclick="showSection('recipes')">← חזרה לתפריט</button>
+                <div id="recipe-content"></div>
+            </div>
+        </section>
+
+        <section id="add-section" class="view hidden">
+            <div class="form-card">
+                <span class="eyebrow">ADD NEW RECIPE</span>
+                <form id="add-recipe-form">
+                    <input type="text" name="Name" placeholder="שם היצירה" required>
+                    <textarea name="ingredients" placeholder="מרכיבים (מופרדים בפסיק)" rows="3" required></textarea>
+                    <textarea name="instructions" placeholder="תהליך ההכנה" rows="5" required></textarea>
+                    
+                    <label style="color:var(--gold); display:block; margin-bottom:5px;">קטגוריה:</label>
+                    <select name="CategoryCode" style="background:transparent; color:white; border:none; border-bottom:1px solid var(--border); width:100%; margin-bottom:40px; padding:15px 0; outline:none;">
+                        <option value="1" style="color:black">מנות ראשונות</option>
+                        <option value="2" style="color:black">מרקים</option>
+                        <option value="3" style="color:black">מנות עיקריות - בשר</option>
+                        <option value="4" style="color:black">מנות עיקריות - עוף</option>
+                        <option value="5" style="color:black">מנות עיקריות - דגים</option>
+                        <option value="6" style="color:black">מנות עיקריות - צמחוני</option>
+                        <option value="7" style="color:black">מנות עיקריות - טבעוני</option>
+                        <option value="8" style="color:black">תוספות חמות</option>
+                        <option value="9" style="color:black">תוספות קרות</option>
+                        <option value="10" style="color:black">קינוחים חלביים</option>
+                        <option value="11" style="color:black">קינוחים פרווה</option>
+                        <option value="12" style="color:black">עוגות שוקולד</option>
+                    </select>
+
+                    <label style="color:var(--gold); display:block; margin-bottom:5px;">בחר תמונה מהמחשב:</label>
+                    <input type="file" id="image-upload" accept="image/*" style="border:none; margin-bottom:40px;">
+
+                    <button type="submit" class="btn-submit">פרסם בגלריה</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="update-section" class="view hidden">
+            <div class="form-card">
+                <span class="eyebrow">EDIT MASTERPIECE</span>
+                <form id="update-recipe-form">
+                    <input type="hidden" id="edit-id">
+                    <input type="text" id="edit-name" placeholder="שם היצירה">
+                    <textarea id="edit-ingredients" rows="4" placeholder="מרכיבים"></textarea>
+                    <textarea id="edit-instructions" rows="6" placeholder="הוראות"></textarea>
+                    <input type="number" id="edit-category" placeholder="קוד קטגוריה">
+                    <button type="submit" class="btn-submit">עדכן שינויים</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="ask-section" class="view hidden">
+            <div class="form-card" style="text-align: center;">
+                <span class="eyebrow">BAKING ASSISTANT</span>
+                <h2 style="font-family:'Playfair Display'; font-size: 3rem; margin-bottom: 30px;">שאל את השף</h2>
+                <input type="text" id="ai-question" placeholder="למה המקרונים נסדקו?">
+                <button class="btn-submit" onclick="askBakingChef()">שלח שאלה</button>
+                <div id="ai-answer" class="ai-response hidden" style="margin-top: 40px; padding: 20px; border-top: 1px solid var(--border); background: rgba(255,255,255,0.05);"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="recipe.js"></script>
+</body>
+</html>
