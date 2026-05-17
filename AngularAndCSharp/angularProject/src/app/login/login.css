@@ -1,0 +1,119 @@
+
+/* ======================================= */
+/* 2. עיצוב כרטיס (Card) */
+/* ======================================= */
+.card {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 40px;
+    background: #1c1c1c; 
+    color: #f0f0f0; 
+    border-radius: 12px;
+    
+    box-shadow: 
+        0 0 10px rgba(0, 191, 255, 0.3), 
+        0 8px 16px rgba(0, 0, 0, 0.5);
+        
+    border: 1px solid rgba(0, 191, 255, 0.2); 
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------------------------------------- */
+/* כותרת, שדות קלט וכפתור */
+/* -------------------------------------- */
+.card h2 {
+    color: #ff3d00; 
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+/* שדות קלט */
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; color: #cccccc; font-size: 0.95em; }
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #333333; 
+    color: #ffffff; 
+    border: 1px solid #555; 
+    border-radius: 6px; 
+    font-size: 1em;
+    box-sizing: border-box; 
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-group input:focus {
+    border-color: #00bfff; 
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
+    outline: none;
+    background-color: #1a1a1a;
+}
+
+/* כפתור Submit */
+.card button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 25px; 
+    background-color: #ff3d00; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(255, 61, 0, 0.4);
+}
+.card button[type="submit"]:hover:not(:disabled) {
+    background-color: #e03500;
+    box-shadow: 0 6px 15px rgba(255, 61, 0, 0.6);
+}
+.card button[type="submit"]:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* הודעות שגיאה והצלחה */
+.error { color: #ff4444; font-size: 0.85em; margin-top: 5px; }
+.success { color: #00bfff; font-size: 1em; font-weight: 600; text-align: center; margin-top: 20px; padding: 10px; border: 1px dashed #00bfff; border-radius: 4px; }
+
+/* -------------------------------------- */
+/* 3. תיקון: קישור הרשמה בצבע אדום/כתום */
+/* -------------------------------------- */
+.footer-links {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.95em;
+    color: #cccccc;
+}
+
+.footer-links a {
+    color: #ff3d00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #e03500;
+    text-decoration: underline;
+}
+
+/* ======================================= */
+/* 1. מבנה ומרכוז (content-wrapper) */
+/* ======================================= */
+.content-wrapper {
+    flex-grow: 1; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 20px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    margin: 0; 
+}

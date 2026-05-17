@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bll\Bll.csproj" />
+    <ProjectReference Include="..\Dal\Dal.csproj" />
+    <ProjectReference Include="..\Dto\Dto.csproj" />
+    <ProjectReference Include="..\IBll\IBll.csproj" />
+    <ProjectReference Include="..\IDal\IDal.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\0a6ac624d651ac41975500b0f65a04dd.jpg" />
+    <None Include="wwwroot\1.jpg" />
+    <None Include="wwwroot\1dc498b596dca0ebf31b96bf83524e13.0000000.jpg" />
+    <None Include="wwwroot\2.jpg" />
+    <None Include="wwwroot\3.jpg" />
+    <None Include="wwwroot\4.jpg" />
+    <None Include="wwwroot\5.jpg" />
+    <None Include="wwwroot\6.jpg" />
+    <None Include="wwwroot\6d9fa9e73fc921f7314da9530578c14d.0000000.jpg" />
+    <None Include="wwwroot\7.jpg" />
+  </ItemGroup>
+
+</Project>

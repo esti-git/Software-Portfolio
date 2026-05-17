@@ -1,0 +1,153 @@
+
+/* ======================================= */
+/* 1. HERO - אזור פתיחה */
+/* ======================================= */
+
+.hero {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* שכבת כהה */
+    url('../../assets/pic.jpg') center/cover no-repeat;
+    background-size: cover;
+    height: 70vh; /* גובה ויזואלי גבוה */
+    display: flex;
+    align-items: center; /* ממורכז אנכית */
+    justify-content: center; /* ממורכז אופקית */
+    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+
+.hero-content {
+    max-width: 800px;
+    color: #f0f0f0;
+    z-index: 10;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    margin-bottom: 10px;
+    /* זוהר עדין לכותרת */
+    text-shadow: 0 0 15px rgba(255, 61, 0, 0.8);
+    color: #fff;
+    font-weight: 900;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    color: #cccccc;
+    font-weight: 300;
+}
+
+/* כפתור קריאה לפעולה (CTA) */
+.cta-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #ff3d00; /* כתום מותג */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    
+    /* הוספת צל זוהר */
+    box-shadow: 0 0 15px rgba(255, 61, 0, 0.7);
+}
+
+.cta-btn:hover {
+    background-color: #e03500;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(255, 61, 0, 0.9);
+}
+
+
+/* ======================================= */
+/* 2. SHOWS GRID - רשימת המופעים */
+/* ======================================= */
+.shows-section {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 2.8em;
+    color: #ff3d00; /* כותרת ראשית בצבע מותג */
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(255, 61, 0, 0.4);
+}
+
+.shows-grid {
+    display: grid;
+    /* רספונסיביות: 3 עמודות רחבות, משתנה ל-1 ברוחב קטן */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+}
+
+.show-card {
+    background-color: #1c1c1c; /* רקע כרטיס כהה */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    
+    /* גבול ניאון כחול */
+    border: 1px solid rgba(0, 191, 255, 0.2); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.show-card:hover {
+    transform: translateY(-5px); /* אפקט ריחוף עדין */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 191, 255, 0.5); /* זוהר מוגבר */
+}
+
+.show-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.show-card:hover img {
+    transform: scale(1.05); /* זום עדין על התמונה בריחוף */
+}
+
+.show-card .info {
+    padding: 20px;
+}
+
+.show-card h3 {
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.show-card .date,
+.show-card .location {
+    color: #cccccc;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+/* כפתור רכישה בתוך הכרטיס */
+.buy-btn {
+    display: block;
+    width: 100%; 
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 15px;
+    background-color: #00bfff; /* כפתור קטן בצבע ניאון כחול */
+    color: #1c1c1c;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.buy-btn:hover {
+    background-color: #0088cc;
+    color: white;
+}

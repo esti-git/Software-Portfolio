@@ -1,0 +1,54 @@
+<div class="modal-overlay" (click)="onCloseModal()">
+  <div class="modal-content" (click)="stopPropagation($event)">
+    
+    <button class="close-button" (click)="onCloseModal()" aria-label="סגור">✖</button>
+    
+    <div *ngIf="isLoading" class="loading-container">
+      <h2>טוען פרטי מוצר...</h2>
+      <div class="loader"></div>
+    </div>
+
+    <div *ngIf="event && !isLoading" class="product-details"> 
+      
+      <div class="product-image-container">
+        <img [src]="'https://localhost:7003' + event.imageUrl" 
+             [alt]="event.name"
+             class="product-image">
+      </div>
+      
+      <div class="product-info">
+        <h2 class="product-title">{{ event.name }}</h2>
+        
+        <div class="product-details-grid">
+          <div class="detail-item">
+            <span class="detail-label">📍 מיקום:</span>
+            <span class="detail-value">{{ event.location }}</span>
+          </div>
+          
+          <div class="detail-item">
+            <span class="detail-label">📅 תאריך:</span>
+            <span class="detail-value">{{ event.eventDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          
+          <div class="detail-item">
+            <span class="detail-label">💰 מחיר:</span>
+            <span class="detail-value price">{{ event.price | currency: 'ILS' }}</span>
+          </div>
+          
+          <div class="detail-item">
+            <span class="detail-label">👤 גיל מינימלי:</span>
+            <span class="detail-value">{{ event.ageMin }}</span>
+          </div>
+        </div>
+        
+        <button (click)="addToCart(); stopPropagation($event)" 
+                class="add-to-cart-button"
+                type="button">
+          🛒 הוספה לסל
+        </button>
+      </div>
+      
+    </div>
+
+  </div> 
+</div>

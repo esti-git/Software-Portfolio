@@ -1,0 +1,35 @@
+<div class="content-wrapper">
+<div class="card">
+  <h2>התחברות למערכת</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="email">דואר אלקטרוני</label>
+      <input id="email" formControlName="email" />
+      <div class="error" *ngIf="email?.touched && email?.invalid">
+        <div *ngIf="email?.errors?.['required']">האימייל דרוש.</div>
+        <div *ngIf="email?.errors?.['email']">כתובת אימייל לא תקינה.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">סיסמה</label>
+      <input id="password" type="password" formControlName="password" />
+      <div class="error" *ngIf="password?.touched && password?.invalid">
+        <div *ngIf="password?.errors?.['required']">הסיסמה דרושה.</div>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="submitting">
+      {{ submitting ? 'בודק...' : 'התחבר' }}
+    </button>
+  </form>
+
+  <div class="success" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div class="footer-links">
+    עדיין לא רשומים? <a routerLink="/connection"> להרשמה » </a>
+  </div>
+</div>
+</div>

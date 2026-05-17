@@ -1,0 +1,38 @@
+<div class="filter-controls">
+
+
+  <select [(ngModel)]="selectedCategoryId" (change)="filterByCategoryId(selectedCategoryId)" class="form-select">
+
+    <option [ngValue]="0">כל האירועים</option>
+
+    <option *ngFor="let cat of categories" [ngValue]="cat.category_id"> {{ cat.category_name }} </option>
+  </select>
+
+  <button (click)="sortByPrice()" [class.asc]="sortAscending" [class.desc]="!sortAscending">
+    מיין לפי מחיר <span class="sort-icon"></span>
+  </button>
+
+
+  <label for="minAge">גיל מינימלי</label>
+  <input type="number" id="minAge" [(ngModel)]="minAge" (ngModelChange)="sortByMinAge(minAge)">
+
+</div>
+<hr>
+<ul class="event-list">
+  <li *ngFor="let event of events">
+    <div class="event-card" (click)="openEventDetails(event)">
+      <div class="image-container">
+        <img [src]="serverBaseUrl + event.imageUrl" alt="תמונה של {{ event.name }}">
+      </div>
+
+      <div class="event-info">
+        <h3>{{ event.name }}</h3>
+        <p class="location">{{ event.location }}</p>
+        <p class="date">{{ event.eventDate }}</p>
+        <div class="price-tag">{{ event.price }}</div>
+      </div>
+    </div>
+  </li>
+</ul>
+<app-prodact-detiels *ngIf="selectedEvent" [event]="selectedEvent" (closeModal)="closeEventDetails()">
+</app-prodact-detiels>

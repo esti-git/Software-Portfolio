@@ -1,0 +1,106 @@
+:root {
+    --gold: #d4af37;
+    --gold-dark: #b8860b;
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --text-white: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+* { box-sizing: border-box; font-family: 'Assistant', sans-serif; transition: 0.3s; }
+
+body {
+    margin: 0; background-color: var(--bg-dark); color: var(--text-white);
+    background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+    min-height: 100vh;
+}
+
+.main-header {
+    background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding: 20px 0;
+    position: sticky; top: 0; z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px; margin: 0 auto; display: flex; 
+    justify-content: space-between; align-items: center; padding: 0 30px;
+}
+
+.brand { display: flex; align-items: center; gap: 15px; }
+.logo-gold {
+    background: var(--gold); color: var(--bg-dark); width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; font-weight: bold; font-size: 1.5rem;
+}
+
+.brand h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 0; }
+.brand h1 span { color: var(--gold); }
+
+.gold-btn {
+    background: transparent; border: 1px solid var(--gold); color: var(--gold);
+    padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold;
+}
+
+.gold-btn:hover { background: var(--gold); color: var(--bg-dark); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+
+.search-bar-luxury {
+    background: var(--card-bg); padding: 30px; border-radius: 15px;
+    margin: 40px auto; max-width: 1000px; display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) auto;
+    gap: 20px; border: 1px solid rgba(255,255,255,0.05);
+}
+
+.input-box label { display: block; color: var(--gold); font-size: 0.8rem; margin-bottom: 8px; text-transform: uppercase; }
+.input-box input, .input-box select {
+    width: 100%; background: #0f172a; border: 1px solid #334155; color: white;
+    padding: 12px; border-radius: 8px;
+}
+
+.search-trigger {
+    background: var(--gold); border: none; padding: 0 40px; border-radius: 8px;
+    font-weight: bold; cursor: pointer; color: var(--bg-dark); align-self: end; height: 45px;
+}
+
+.grid-luxury {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px; max-width: 1200px; margin: 0 auto 50px auto; padding: 0 20px;
+}
+
+.card-luxury {
+    background: var(--card-bg); border-radius: 15px; padding: 25px;
+    border-bottom: 4px solid #334155; position: relative; cursor: pointer;
+}
+
+.card-luxury:hover { transform: translateY(-10px); border-bottom-color: var(--gold); }
+
+.card-luxury h3 { margin: 0 0 15px 0; font-size: 1.3rem; color: var(--gold); }
+.card-luxury p { color: var(--text-muted); font-size: 0.9rem; margin: 8px 0; }
+
+/* Modals */
+.luxury-modal {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px); z-index: 1000;
+}
+
+.modal-inner {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--card-bg); width: 90%; max-width: 550px;
+    padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.close-btn { 
+    position: absolute; left: 20px; top: 15px; background: none; border: none;
+    color: var(--text-muted); font-size: 2rem; cursor: pointer;
+}
+
+.luxury-badge { display: inline-block; padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; margin-bottom: 15px; }
+.prio-4 { background: #ef4444; color: white; }
+.prio-1 { background: #22c55e; color: white; }
+
+.confirm-btn {
+    width: 100%; padding: 15px; background: var(--gold); border: none;
+    border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 20px;
+}
+
+.grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.grid-inputs input { background: #0f172a; border: 1px solid #334155; padding: 12px; color: white; border-radius: 8px; }

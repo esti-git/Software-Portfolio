@@ -1,0 +1,44 @@
+<header class="main-header">
+    </header>
+
+<div class="content-wrapper">
+    <div class="card">
+        <h2>יצירת לקוח חדש</h2>
+
+        <form [formGroup]="customerForm" (ngSubmit)="submit()">
+            <div class="form-group">
+                <label for="username">שם משתמש</label>
+                <input id="username" formControlName="username" />
+                <div class="error" *ngIf="username?.touched && username?.invalid">
+                    <div *ngIf="username?.errors?.['required']">השם דרוש.</div>
+                    <div *ngIf="username?.errors?.['minlength']">השם חייב להכיל לפחות 3 תווים.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">דואר אלקטרוני</label>
+                <input id="email" formControlName="email" />
+                <div class="error" *ngIf="email?.touched && email?.invalid">
+                    <div *ngIf="email?.errors?.['required']">האימייל דרוש.</div>
+                    <div *ngIf="email?.errors?.['email']">כתובת אימייל לא תקינה.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">סיסמה</label>
+                <input id="password" type="password" formControlName="password" />
+                <div class="error" *ngIf="password?.touched && password?.invalid">
+                    <div *ngIf="password?.errors?.['required']">הסיסמה דרושה.</div>
+                    <div *ngIf="password?.errors?.['minlength']">הסיסמה חייבת להכיל לפחות 6 תווים.</div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="submitting">
+                {{ submitting ? 'שולח...' : 'צור לקוח' }}
+            </button>
+        </form>
+
+        <div class="success" *ngIf="successMessage">{{ successMessage }}</div>
+        <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </div>
+</div>

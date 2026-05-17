@@ -1,0 +1,213 @@
+
+/* ======================================= */
+/* ⚙️ א. פילטרים אלגנטיים - Sidebar אנכי מתוח ואחיד בגודל */
+/* ======================================= */
+
+.filter-controls {
+    /* מיקום קבוע לכל אורך הדף */
+    position: fixed; 
+    top: 5%; 
+    right: 0.5%;
+    width: 250px; /* תופס את כל רוחב הרקע הגלובלי */
+    height: 100vh; /* גובה מלא של המסך! */
+    
+    background-color: transparent; /* משתמש ברקע מה-body::before */
+    border: none;
+    border-left: 1px solid #ff3d00; /* גבול אנכי דק ומודגש */
+    border-radius: 0; 
+    
+    padding: 20px; /* ריווח פנימי נקי */
+    padding-top: 40px; /* מרווח גדול יותר מלמעלה כדי לא להתנגש עם קצה המסך */
+    
+    display: flex; 
+    flex-direction: column;
+    gap: 15px; 
+    
+    box-shadow: none; 
+    z-index: 10; 
+}
+
+/* 2. עיצוב הלייבל */
+.filter-controls label {
+    color: #cccccc; 
+    font-weight: 500;
+    margin-top: 10px; 
+    display: block; 
+}
+
+/* 3. עיצוב אחיד (Select, Input, Button) - תיקון הגודל! */
+.filter-controls .form-select,
+.filter-controls input[type="number"],
+.filter-controls button {
+    width: 100%; 
+    height: 40px; /* גובה קבוע ואחיד לכולם */
+    font-size: 1em;
+    font-weight: 600;
+    
+    background-color: #333333; 
+    color: #ffffff; 
+    border: 1px solid #555; 
+    border-radius: 6px; 
+    padding: 8px 12px;
+    
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* ודא שה-Padding לא מרחיב את האלמנט */
+}
+
+/* 4. סגנון מיוחד לכפתור המיון (Sort Button) */
+.filter-controls button {
+    background-color: #ff3d00; 
+    border-color: #ff3d00;
+    margin-top: 5px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-controls button:hover {
+    background-color: #e03500;
+    box-shadow: 0 2px 5px rgba(255, 61, 0, 0.5);
+    transform: translateY(-1px);
+}
+
+/* 5. אפקט פוקוס על Select ו-Input */
+.filter-controls .form-select:focus,
+.filter-controls input[type="number"]:focus {
+    border-color: #00bfff; 
+    box-shadow: 0 0 5px rgba(0, 191, 255, 0.8);
+    outline: none;
+    background-color: #1a1a1a;
+}
+
+/* 6. עיצוב החץ המותאם אישית */
+.filter-controls button .sort-icon {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 8px; 
+    transition: border-color 0.2s;
+}
+
+/* חץ כללי - ראש למטה (descending) */
+.filter-controls button.desc .sort-icon {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+}
+
+/* חץ כאשר המיון הוא עולה (ascending) */
+.filter-controls button.asc .sort-icon {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+}
+
+/* ======================================= */
+/* 🤘 ב. עיצוב רשימת המוצרים (דרמטי) */
+/* ======================================= */
+
+.event-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px;
+    /* דוחף את הרשימה שמאלה בהתאם לרוחב החדש של הסרגל (270px) */
+    margin-right: 300px; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+}
+
+/* 2. עיצוב כרטיס האירוע */
+.event-card {
+    background: #1c1c1c; 
+    color: #f0f0f0; 
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease-out; 
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    border: 1px solid rgba(255, 61, 0, 0.2); 
+}
+
+/* אפקט ריחוף (דרמטי) */
+.event-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 0 10px rgba(255, 61, 0, 0.5), 
+        0 20px 40px rgba(255, 61, 0, 0.3), 
+        0 0 0 4px rgba(255, 61, 0, 0.1); 
+}
+
+/* 3. עיצוב התמונה */
+.image-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.event-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* אפקט זום קל בריחוף על התמונה */
+.event-card:hover img {
+    transform: scale(1.05); 
+}
+
+/* 4. עיצוב פרטי האירוע */
+.event-info {
+    padding: 15px 20px 20px 20px;
+    flex-grow: 1; 
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.event-info h3 {
+    color: #ff3d00;
+    margin-top: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.event-info p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #aaaaaa;
+}
+
+
+/* 5. עיצוב תג מחיר */
+.price-tag {
+    background-color: #ff3d00;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 10px;
+    float: right; 
+}
+
+/* 6. עיצוב כפתור רכישה */
+.buy-button {
+    width: 100%;
+    background-color: #00bfff; 
+    color: #1c1c1c; 
+    border: none;
+    padding: 12px 0;
+    border-radius: 0 0 12px 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-top: 0; 
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
+}
+
+.buy-button:hover {
+    background-color: #0088cc;
+}

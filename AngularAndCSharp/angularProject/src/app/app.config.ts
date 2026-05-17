@@ -1,0 +1,22 @@
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { provideRouter, withRouterConfig } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http'; // ✅ עדכון: הוספת withFetch
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes, 
+      withRouterConfig({ 
+        onSameUrlNavigation: 'reload' 
+      })
+    ),
+    
+    provideHttpClient(withFetch()), 
+    
+    provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
+    provideClientHydration(withEventReplay()),
+  ]
+};

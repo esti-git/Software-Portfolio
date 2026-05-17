@@ -1,0 +1,132 @@
+
+<div dir="rtl" class="cart-page">
+
+  @if (purchaseSuccess) {
+    <div class="success-message">
+      <div class="success-icon">✓</div>
+      <h2>הרכישה בוצעה בהצלחה!</h2>
+      <p class="buyer-name">שלום {{ purchaserName }},</p>
+      <p>סה"כ רכישה: <strong>{{ displayTotal | currency:'ILS' }}</strong></p>
+      <div class="success-buttons">
+        <button (click)="continueAddingTickets()" class="btn-continue">🎟️ קנה כרטיס נוסף</button>
+        <button (click)="closeSuccess()" class="buy-button">✓ סגור וחזור לדף הבית</button>
+      </div>
+      <p class="auto-close-text">תודה שבחרת בנו!</p>
+    </div>
+  }
+  @else if (showLimitModal) {
+    <div class="modal-overlay" (click)="closeLimitModal()">
+      <div class="limit-modal" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <div class="warning-icon">⚠️</div>
+          <h2>גבול סכום עובר</h2>
+        </div>
+        <div class="modal-content">
+          <p>הסכום הנוכחי הוא <strong>{{ displayTotal | currency:'ILS' }}</strong></p>
+          <p>הסכום המקסימלי לרכישה הוא <strong>5,000 ₪</strong></p>
+          <p>אנא הורד פריטים מהסל כדי להמשיך ברכישה</p>
+        </div>
+        <div class="modal-actions">
+          <button class="modal-btn-close" (click)="closeLimitModal()">הבנתי</button>
+        </div>
+      </div>
+    </div>
+  }
+  @else if (showPaymentForm) {
+    <div class="payment-form-container">
+      <h2>השלמת פרטי רכישה</h2>
+      <h3 class="summary-total">סה"כ לתשלום: {{ displayTotal | currency:'ILS' }}</h3>
+
+      <form (ngSubmit)="submitPurchase()" #purchaseForm="ngForm">
+
+        <h3>פרטי כרטיס אשראי</h3>
+
+        <div class="form-group">
+          <label for="fullName">שם מלא *</label>
+          <input type="text" id="fullName" [(ngModel)]="purchaseData.fullName" name="fullName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cardNumber">מספר כרטיס *</label>
+          <input type="text" id="cardNumber" [(ngModel)]="purchaseData.cardNumber" name="cardNumber" maxlength="16" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expiryDate">תוקף *</label>
+            <input type="text" id="expiryDate" [(ngModel)]="purchaseData.expiryDate" name="expiryDate" maxlength="5" placeholder="MM/YY" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cvv">CVV *</label>
+            <input type="text" id="cvv" [(ngModel)]="purchaseData.cvv" name="cvv" maxlength="3" required>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="back-button" (click)="backToDetails()">חזרה לסל</button>
+          <button type="submit" class="buy-button" [disabled]="isPurchasing">
+            {{ isPurchasing ? '🔄 מעבד תשלום...' : 'אישור תשלום - ' + (displayTotal | currency:'ILS') }}
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+  @else {
+    <div class="cart-container">
+      <h1 class="cart-title">🛒 סל הקניות שלך</h1>
+
+      @if (cartItems().length === 0) {
+        <div class="empty-cart-message">
+          <p>הסל שלך ריק כרגע. חזור לדף המוצרים כדי להתחיל קניות!</p>
+        </div>
+      }
+      @else {
+        <div class="cart-list-wrapper">
+          @for (item of cartItems(); track item.productId) {
+            <div class="cart-item">
+              <div class="item-details">
+                <span class="item-name">{{ item.name }}</span>
+                <span class="item-price">מחיר ליחידה: {{ item.price | currency:'ILS' }}</span>
+              </div>
+
+              <div class="quantity-control">
+                <button (click)="decreaseQuantity(item.productId)" class="qty-btn" [disabled]="item.quantity <= 1">-</button>
+                <span class="item-quantity-display">{{ item.quantity }}</span>
+                <button (click)="increaseQuantity(item.productId)" class="qty-btn">+</button>
+              </div>
+
+              <div class="item-actions">
+                <span class="item-subtotal">סה"כ: {{ item.price * item.quantity | currency:'ILS' }}</span>
+                <button (click)="removeFromCart(item.productId)" class="remove-btn">❌ הסר פריט</button>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="coupon-section">
+          <label>הכנס קוד קופון:</label>
+          <input type="text" [(ngModel)]="couponCodeInput">
+          <button (click)="applyCoupon()">החל קופון</button>
+          <p class="coupon-status">{{ couponMessage }}</p>
+        </div>
+
+        <div class="cart-summary">
+          @if (discountApplied && totalAmount() !== displayTotal) {
+            <p class="original-price">מחיר רגיל: <span style="text-decoration: line-through;">{{ totalAmount() | currency:'ILS' }}</span></p>
+          }
+          <h3 class="summary-total">
+            סה"כ לתשלום: 
+            <span class="total-amount-display" [style.color]="discountApplied ? 'green' : 'inherit'">{{ displayTotal | currency:'ILS' }}</span>
+            @if (discountApplied && totalAmount() !== displayTotal) {
+              <span class="discount-badge">הנחה 5%</span>
+            }
+          </h3>
+          <button (click)="openPaymentForm()" class="checkout-btn">
+            ✅ המשך לתשלום
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>

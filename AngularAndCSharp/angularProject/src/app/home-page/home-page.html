@@ -1,0 +1,32 @@
+
+<div class="home-container">
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to the World of Shows</h1>
+      <p>Live Performances • Israel's Biggest Artists • An Unforgettable Experience</p>
+      <a routerLink="/prodacts" class="cta-btn">צפו במופעים</a>
+
+    </div>
+  </section>
+
+  <section class="shows-section">
+    <h2 class="section-title">Our Hottest Shows</h2>
+
+    <div class="shows-grid">
+      <div class="show-card" *ngFor="let s of shows">
+
+        <img [src]="s.image" alt="show">
+        <div class="info">
+          <h3>{{ s.title }}</h3>
+          <p class="date">{{ s.date }}</p>
+          <p class="location">{{ s.location }}</p>
+          <a routerLink="/prodacts" class="buy-btn">לרכישת כרטיסים</a>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>

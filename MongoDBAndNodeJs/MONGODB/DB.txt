@@ -1,0 +1,230 @@
+use volunteerSystem
+
+
+
+db.statuses.insertMany([
+  { _id: 1, name: "Waiting" },
+  { _id: 2, name: "In Progress" },
+  { _id: 3, name: "Completed" }
+]);
+
+
+db.priorities.insertMany([
+  { _id: 1, name: "Low" },
+  { _id: 2, name: "Medium" },
+  { _id: 3, name: "High" },
+  { _id: 4, name: "Critical" }
+]);
+
+
+
+
+db.volunteers.insertMany([
+  {
+    _id: "VOL1001",
+	identityCard:"123456788",
+    firstName: "David",
+    lastName: "Cohen",
+    phone: "0501111111",
+    specialties: ["Towing", "Vehicle Rescue"]
+  },
+  {
+    _id: "VOL1002",
+	identityCard:"123556789",
+    firstName: "Yosef",
+    lastName: "Levi",
+    phone: "0522222222",
+    specialties: ["First Aid"]
+  }
+]);
+
+
+db.volunteers.insertMany([
+  {
+    _id: "VOL1003",
+	identityCard:"123456789",
+    firstName: "Moshe",
+    lastName: "Friedman",
+    phone: "0533333333",
+    specialties: ["Logistics", "Coordination"]
+  },
+  {
+    _id: "VOL1004",
+	identityCard:"133356789",
+    firstName: "Avi",
+    lastName: "Rosen",
+    phone: "0547777777",
+    specialties: ["Vehicle Repair"]
+  },
+  {
+    _id: "VOL1005",
+	identityCard:"555556789",
+    firstName: "Daniel",
+    lastName: "Katz",
+    phone: "0508888888",
+    specialties: ["Emergency Assistance", "First Aid"]
+  },
+  {
+    _id: "VOL1006",
+	identityCard:"123888889",
+    firstName: "Yaakov",
+    lastName: "Weiss",
+    phone: "0529999999",
+    specialties: ["Food Delivery"]
+  }
+]);
+
+db.helpRequests.insertMany([
+  {
+    _id: "HR1",
+    description: "Vehicle stuck on the roadside",
+    contactPhone: "0544444444",
+    peopleCount: 3,
+
+    location: {
+      roadName: "Highway 1",
+      area: "Near Harel Interchange"
+    },
+
+    priorityId: 3,
+    statusId: 1,
+    volunteerId: null
+  },
+  {
+    _id: "HR2",
+    description: "Elderly person needs transportation to a clinic",
+    contactPhone: "0505555555",
+    peopleCount: 1,
+
+    location: {
+      city: "Jerusalem",
+      street: "Kanfei Nesharim",
+      houseNumber: 24
+    },
+
+    priorityId: 2,
+    statusId: 2,
+    volunteerId: "VOL1001"
+  },
+  {
+    _id: "HR3",
+    description: "Family with an infant without electricity",
+    contactPhone: "0526666666",
+    peopleCount: 4,
+
+    location: {
+      city: "Bnei Brak",
+      street: "Rabbi Akiva",
+      houseNumber: 15
+    },
+
+    priorityId: 4,
+    statusId: 3,
+    volunteerId: "VOL1002"
+  }
+]);
+
+
+db.helpRequests.insertMany([
+  {
+    _id: "HR4",
+    description: "Flat tire, vehicle cannot continue driving",
+    contactPhone: "0541231234",
+    peopleCount: 2,
+
+    location: {
+      roadName: "Highway 1",
+      area: "Eastbound, km 45"
+    },
+
+    priorityId: 3,
+    statusId: 1,
+    volunteerId: null
+  },
+  {
+    _id: "HR5",
+    description: "Single mother needs food delivery",
+    contactPhone: "0523214321",
+    peopleCount: 3,
+
+    location: {
+      city: "Ashdod",
+      street: "HaAtzmaut",
+      houseNumber: 7
+    },
+
+    priorityId: 2,
+    statusId: 2,
+    volunteerId: "VOL1006"
+  },
+  {
+    _id: "HR6",
+    description: "Elderly couple stuck in elevator",
+    contactPhone: "0507654321",
+    peopleCount: 2,
+
+    location: {
+      city: "Jerusalem",
+      street: "Harav Kook",
+      houseNumber: 12
+    },
+
+    priorityId: 4,
+    statusId: 2,
+    volunteerId: "VOL1005"
+  },
+  {
+    _id: "HR7",
+    description: "Vehicle battery drained, jump start needed",
+    contactPhone: "0548881122",
+    peopleCount: 1,
+
+    location: {
+      city: "Bnei Brak",
+      street: "Chazon Ish",
+      houseNumber: 3
+    },
+
+    priorityId: 2,
+    statusId: 1,
+    volunteerId: null
+  },
+  {
+    _id: "HR8",
+    description: "Family needs temporary lighting due to power outage",
+    contactPhone: "0534567890",
+    peopleCount: 5,
+
+    location: {
+      city: "Netanya",
+      street: "Herzl",
+      houseNumber: 88
+    },
+
+    priorityId: 4,
+    statusId: 1,
+    volunteerId: "VOL1003"
+  },
+  {
+    _id: "HR9",
+    description: "Broken door lock, family cannot enter home",
+    contactPhone: "0501112233",
+    peopleCount: 4,
+
+    location: {
+      city: "Jerusalem",
+      street: "Shamgar",
+      houseNumber: 9
+    },
+
+    priorityId: 3,
+    statusId: 1,
+    volunteerId: "VOL1004"
+  }
+]);
+
+
+
+
+
+

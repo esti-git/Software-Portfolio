@@ -1,0 +1,64 @@
+
+<div class="navBar">
+  <a routerLink="/home" class="navButton">דף בית</a>
+  <a routerLink="/prodacts" class="navButton">רשימת מוצרים</a>
+  <a routerLink="/cart" class="navButton">סל קניות</a>
+  <a *ngIf="!customerService.getCurrentUser()" routerLink="/connection" class="navButton">הרשמה</a>
+  <a *ngIf="!customerService.getCurrentUser()" routerLink="/login" class="navButton">התחברות</a>
+   <button *ngIf="customerService.getCurrentUser()"  class="navButton" (click)="customerService.logout()">התנתקות</button> 
+<span 
+  *ngIf="customerService.getCurrentUser()" 
+  class="navButton user-wrapper"
+  (click)="toggleCouponMessage()">
+
+  {{ customerService.getCurrentUser()?.username }}
+
+  <!-- עיגול אדום -->
+  <span 
+    *ngIf="customerService.hasCouponMessage()" 
+    class="red-dot">
+  </span>
+</span>
+
+<!-- חלון הודעה -->
+<div *ngIf="showCouponMessage" class="coupon-popup">
+  <p>🎉 יש לך קופון לחודש הראשון! השתמשי בקוד FIRST5 וקבלי 5% הנחה</p>
+  <button class="close-btn" (click)="closeCouponMessage()">✖</button>
+</div>
+
+</div>
+
+<main class="main-content-wrapper">
+    <router-outlet></router-outlet>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-section">
+      <h3>LiveTickets</h3>
+      <p>האתר המוביל להזמנת כרטיסים להופעות ואירועים.</p>
+      <p>טלפון: 03-555-1234</p>
+      <p> support@livetickets.com: אימייל</p>
+      <p>כתובת: תל אביב, ישראל</p>
+    </div>
+    <div class="footer-section">
+      <h4>עקבו אחרינו</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com" target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © כל הזכויות שמורות LiveTickets 2025
+  </div>
+</footer>
